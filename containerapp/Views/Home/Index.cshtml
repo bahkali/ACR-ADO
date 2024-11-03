@@ -6,3 +6,30 @@
     <h1 class="display-4">Welcome</h1>
     <p>This is a Docker project that is publish to Azure Web App using Azure DevOps</p>
 </div>
+
+@{
+    ViewData["Title"] = "Image Collection";
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Image Collection</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (int i = 0; i < 6; i++) // Adjust the count as needed
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/200/200?random=@i" class="card-img-top" alt="Random Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Image @i</h5>
+                        <p class="card-text">
+                            This is a random image from Picsum. Each reload will fetch a different image.
+                        </p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Randomly generated image
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
