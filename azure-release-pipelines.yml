@@ -1,0 +1,14 @@
+trigger:
+- main
+
+pool: Default
+
+steps:
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure subscription 1 (cac631ad-151a-4e65-b291-014ca7ecf272)'
+    appName: 'dotnetacrmvc'
+    deployToSlotOrASE: true
+    resourceGroupName: 'rg-dockeronazure-mvc'
+    slotName: 'production'
+    containers: 'dockerazacr1030546895.azurecr.io/dotnetcontainerapp:latest'
