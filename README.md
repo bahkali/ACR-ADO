@@ -7,9 +7,8 @@ The pipeline is set up with the classic editor for CI and YAML for CD.
 
 - **Technologies Used**: ASP.NET8 Core MVC, Docker, Azure, Azure Container Registry (ACR), Azure DevOps
 - **Deployment Targets**: Development and Production staging environments on Azure
-- **CI/CD Pipeline**: 
-  - **Continuous Integration (CI)** is configured with the classic editor in Azure DevOps.
-  - **Continuous Deployment (CD)** uses a YAML pipeline.
+- **Continuous Integration (CI)** is configured with the classic editor in Azure DevOps.
+- **Continuous Deployment (CD)** uses a YAML pipeline.
 
 ## Architecture Diagram
 
@@ -47,24 +46,28 @@ The pipeline is set up with the classic editor for CI and YAML for CD.
    bash
    git clone https://github.com/your-repo-url.git
    cd your-repo
-  ```
+
+
 2. **Configure Environment Variables**: 
+
 Set up required environment variables for accessing Azure resources, such as:
 - AZURE_ACR_NAME: Azure Container Registry name.
 - AZURE_SUBSCRIPTION: Azure subscription ID.
 - DOCKER_IMAGE_NAME: Docker image name for the application.
+
 ### Dockerizing the Application
 
 1. **Create Dockerfile**:
 The Dockerfile is located in the containerapp folder and configures the application for deployment in Docker.
 2. **Build Docker Image**:
-```
-docker build -t your-image-name .
-```
+    ```
+    docker build -t your-image-name .
+
+
 3. **Run Docker Container Locally**:
-```
-docker run -p 8080:80 your-image-name
-```
+    ```
+    docker run -p 8080:80 your-image-name
+
 
 
 
@@ -80,22 +83,22 @@ Set up the CI pipeline using the classic editor in Azure DevOps to build and pus
 - Push to ACR: Push the image to Azure Container Registry.
 ### Continuous Deployment (CD)
 **Sample YAML for CD**:
-```
-trigger:
-- main
+    ```
+    trigger:
+    - main
 
-pool: Default
+    pool: Default
 
-steps:
-- task: AzureWebAppContainer@1
-  inputs:
-    azureSubscription: '$(Azure subscription)'
-    appName: '$(app name)'
-    deployToSlotOrASE: true
-    resourceGroupName: '$(resourceGroupName)'
-    slotName: 'production'
-    containers: '$(image name)'
-```
+    steps:
+    - task: AzureWebAppContainer@1
+    inputs:
+        azureSubscription: '$(Azure subscription)'
+        appName: '$(app name)'
+        deployToSlotOrASE: true
+        resourceGroupName: '$(resourceGroupName)'
+        slotName: 'production'
+        containers: '$(image name)'
+
 ### References
 - ![Azure DevOps Documentation](https://learn.microsoft.com/en-us/azure/devops/?view=azure-devops)
 - ![Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/)
