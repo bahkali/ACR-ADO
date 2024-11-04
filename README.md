@@ -12,7 +12,7 @@ The pipeline is set up with the classic editor for CI and YAML for CD.
 
 ## Architecture Diagram
 
-![Architecture Diagram](./ACR-ADO-driagram.drawio.svg)
+![Architecture Diagram](ACR-ADO-driagram.drawio.svg)
 
 ## Table of Contents
 
@@ -83,21 +83,20 @@ Set up the CI pipeline using the classic editor in Azure DevOps to build and pus
 - Push to ACR: Push the image to Azure Container Registry.
 ### Continuous Deployment (CD)
 **Sample YAML for CD**:
+    
     ```
-    trigger:
-    - main
-
-    pool: Default
-
-    steps:
-    - task: AzureWebAppContainer@1
-    inputs:
-        azureSubscription: '$(Azure subscription)'
-        appName: '$(app name)'
-        deployToSlotOrASE: true
-        resourceGroupName: '$(resourceGroupName)'
-        slotName: 'production'
-        containers: '$(image name)'
+        trigger:
+        - main
+        pool: Default
+        steps:
+        - task: AzureWebAppContainer@1
+        inputs:
+            azureSubscription: '$(Azure subscription)'
+            appName: '$(app name)'
+            deployToSlotOrASE: true
+            resourceGroupName: '$(resourceGroupName)'
+            slotName: 'production'
+            containers: '$(image name)'
 
 ### References
 - ![Azure DevOps Documentation](https://learn.microsoft.com/en-us/azure/devops/?view=azure-devops)
